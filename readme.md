@@ -48,7 +48,7 @@ This section of the project measures your ability to go above and beyond in crea
 When submitting your pull request, it's important to include a brief description of any 'stretch goals' you have accomplished. Stretch goals are additional challenges or enhancements you've tackled that go beyond the basic project requirements. These can either be selected from the suggestions below or can be unique features or tasks tailored to your project's specific needs:
 
 - Incorporate higher-order native array methods in your functions to demonstrate advanced coding techniques.
-- Design and implement helper functions to break down your code, making it clearer and easier to understand.
+- Design and implement helper functions (look up and learn what helper functions are) to break down your code, making it clearer and easier to understand.
 - Develop new functions that provide insights into the data, such as identifying specific characteristics or trends. For example, a function could determine which dinosaurs in a dataset were herbivores.
 - Create an instructional video that walks through your code implementation, explaining each part for better understanding.
 
