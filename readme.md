@@ -41,18 +41,18 @@ Each function you complete within the three files located in the `src/` folder m
 
 This section of the project is designed to measure your increasing skill at writing good code and following best practices. To view components of the mastery rubric, view the appropriate assignment on Canvas.
 
-### Stretch goals
+### Stretch goals _(Required)_
 
 This section of the project measures your ability to go above and beyond in creating your project. To score points in this section, you should incorporate a feature, technology, or skill not explicitly required by the project instructions.
 
-When you submit your pull request, _make sure to include a description of any stretch goals you implemented._ You may choose from the list below or come up with features or tasks that are more relevant to your specific implementation of the project.
+When submitting your pull request, it's important to include a brief description of any 'stretch goals' you have accomplished. Stretch goals are additional challenges or enhancements you've tackled that go beyond the basic project requirements. These can either be selected from the suggestions below or can be unique features or tasks tailored to your project's specific needs:
 
-- Implement higher-order native array methods within your functions.
-- Build helper functions that segment your code to make it more readable and understandable.
-- Write new function(s) that answer a question about the data. For example, you could write a function that answers the question, "Which of the dinosaurs in this room were herbivores?"
-- Create a solution video that walks through an implementation of your code, describing what is happening at each step.
+- Incorporate higher-order native array methods in your functions to demonstrate advanced coding techniques.
+- Design and implement helper functions to break down your code, making it clearer and easier to understand.
+- Develop new functions that provide insights into the data, such as identifying specific characteristics or trends. For example, a function could determine which dinosaurs in a dataset were herbivores.
+- Create an instructional video that walks through your code implementation, explaining each part for better understanding.
 
-Points will be allocated in this section at the discretion of the instructor.
+Remember, your coach will award points in this section based on the innovation and relevance of these additional achievements to your project.
 
 ### Presentation rubric
 
