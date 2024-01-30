@@ -163,7 +163,7 @@ function checkForInvalidInfo(ticketData, ticketInfo) {
         extras: [],
       },
       {
-        ticketType: "general",
+        ticketType: "gengdfgral",
         entrantType: "senior",
         extras: ["terrace"],
       },
@@ -180,6 +180,10 @@ function checkForInvalidInfo(ticketData, ticketInfo) {
     ];
 
 function purchaseTickets(ticketData, purchases) {
+
+  let invalidPurchase = purchases.find(purchase => (checkForInvalidInfo(ticketData,purchase) !== true));
+  if(invalidPurchase) return checkForInvalidInfo(ticketData,invalidPurchase);
+
   let finalReceipt = ['Thank you for visiting the Dinosaur Museum!\n-------------------------------------------\n']
   
   let totalPrice = 0;
@@ -207,7 +211,7 @@ function capitalize(string) {
   return string.charAt(0).toUpperCase() + string.substring(1).toLowerCase();
 }
 
-console.log(purchaseTickets(exampleTicketData,purchases))
+// console.log(purchaseTickets(exampleTicketData,purchases))
 
 
 
