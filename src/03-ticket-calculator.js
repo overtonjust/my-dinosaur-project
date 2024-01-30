@@ -54,7 +54,41 @@ const exampleTicketData = require("../data/tickets");
     calculateTicketPrice(tickets, ticketInfo);
     //> "Entrant type 'kid' cannot be found."
  */
-function calculateTicketPrice(ticketData, ticketInfo) {}
+
+    const ticketInfo = {
+      ticketType: "membership",
+      entrantType: "child", // Incorrect
+      extras: ['movie', 'education'],
+    };
+
+function calculateTicketPrice(ticketData, ticketInfo) {
+  // Break down the ticketInfo to its parts.
+  let ticket = ticketInfo.ticketType;
+  let entrant = ticketInfo.entrantType;
+  let extraChosen = ticketInfo.extras;
+
+    // Break down your ticketData to the parts you need
+    let entrantOptionsArr = Object.keys(ticketData.general.priceInCents);
+    let mainTagsArr = Object.keys(ticketData);
+    let extrasArr = Object.keys(ticketData.extras);
+
+    // Grab an invalid extra from your ticketInfo if any
+    let invalidExtra =  extraChosen.find(extra => {if(!extrasArr.includes(extra)) return extra});
+
+      // Checks to make sure every part of the ticketInfo is valid
+      if(!mainTagsArr.includes(ticket)) return `Ticket type '${ticket}' cannot be found.`;
+      if(!entrantOptionsArr.includes(entrant)) return `Entrant type '${entrant}' cannot be found.`;
+      if(invalidExtra) return `Extra type '${invalidExtra}' cannot be found.`;
+  
+        // If all checks pass calculate the ticket price.
+        let totalPrice = ticketData[ticket].priceInCents[entrant];
+        extraChosen.forEach(extra => totalPrice += ticketData.extras[extra].priceInCents[entrant]);
+
+  return totalPrice;
+}
+
+
+console.log(calculateTicketPrice(exampleTicketData,ticketInfo))
 
 /**
  * purchaseTickets()
