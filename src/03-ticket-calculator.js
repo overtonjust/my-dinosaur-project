@@ -67,28 +67,40 @@ function calculateTicketPrice(ticketData, ticketInfo) {
   let entrant = ticketInfo.entrantType;
   let extraChosen = ticketInfo.extras;
 
-    // Break down your ticketData to the parts you need
-    let entrantOptionsArr = Object.keys(ticketData.general.priceInCents);
-    let mainTagsArr = Object.keys(ticketData);
-    let extrasArr = Object.keys(ticketData.extras);
+    if(checkForInvalidInfo(ticketData,ticketInfo) !== true) {
+        return checkForInvalidInfo(ticketData,ticketInfo)
+        }
 
-    // Grab an invalid extra from your ticketInfo if any
-    let invalidExtra =  extraChosen.find(extra => {if(!extrasArr.includes(extra)) return extra});
+      // If all checks pass calculate the ticket price.
+      let totalPrice = ticketData[ticket].priceInCents[entrant];
+      extraChosen.forEach(extra => totalPrice += ticketData.extras[extra].priceInCents[entrant]);
 
-      // Checks to make sure every part of the ticketInfo is valid
-      if(!mainTagsArr.includes(ticket)) return `Ticket type '${ticket}' cannot be found.`;
-      if(!entrantOptionsArr.includes(entrant)) return `Entrant type '${entrant}' cannot be found.`;
-      if(invalidExtra) return `Extra type '${invalidExtra}' cannot be found.`;
-  
-        // If all checks pass calculate the ticket price.
-        let totalPrice = ticketData[ticket].priceInCents[entrant];
-        extraChosen.forEach(extra => totalPrice += ticketData.extras[extra].priceInCents[entrant]);
-
-  return totalPrice;
+      return totalPrice;
 }
 
+function checkForInvalidInfo(ticketData, ticketInfo) {
+  // Break down the ticketInfo to its parts.
+  let ticket = ticketInfo.ticketType;
+  let entrant = ticketInfo.entrantType;
+  let extraChosen = ticketInfo.extras;
 
-console.log(calculateTicketPrice(exampleTicketData,ticketInfo))
+   // Break down your ticketData to the parts you need
+   let entrantOptionsArr = Object.keys(ticketData.general.priceInCents);
+   let mainTagsArr = Object.keys(ticketData);
+   let extrasArr = Object.keys(ticketData.extras);
+
+   // Grab an invalid extra from your ticketInfo if any
+   let invalidExtra =  extraChosen.find(extra => {if(!extrasArr.includes(extra)) return extra});
+
+     // Checks to make sure every part of the ticketInfo is valid
+     if(!mainTagsArr.includes(ticket)) return `Ticket type '${ticket}' cannot be found.`;
+     if(!entrantOptionsArr.includes(entrant)) return `Entrant type '${entrant}' cannot be found.`;
+     if(invalidExtra) return `Extra type '${invalidExtra}' cannot be found.`;
+
+     return true;
+}
+
+// console.log(calculateTicketPrice(exampleTicketData,ticketInfo))
 
 /**
  * purchaseTickets()
@@ -143,7 +155,61 @@ console.log(calculateTicketPrice(exampleTicketData,ticketInfo))
     purchaseTickets(tickets, purchases);
     //> "Ticket type 'discount' cannot be found."
  */
-function purchaseTickets(ticketData, purchases) {}
+
+    const purchases = [
+      {
+        ticketType: "general",
+        entrantType: "adult",
+        extras: [],
+      },
+      {
+        ticketType: "general",
+        entrantType: "senior",
+        extras: ["terrace"],
+      },
+      {
+        ticketType: "general",
+        entrantType: "child",
+        extras: ["education", "movie", "terrace"],
+      },
+      {
+        ticketType: "general",
+        entrantType: "child",
+        extras: ["education", "movie", "terrace"],
+      },
+    ];
+
+function purchaseTickets(ticketData, purchases) {
+  let finalReceipt = ['Thank you for visiting the Dinosaur Museum!\n-------------------------------------------\n']
+  
+  let totalPrice = 0;
+  purchases.forEach(purchase => {
+    finalReceipt.push(`${capitalize(purchase.entrantType)} ${ticketData[purchase.ticketType].description}: $${convertCentsToDollars(calculateTicketPrice(ticketData,purchase))}${formatArrayOfWords(purchase.extras)}\n`)
+    totalPrice += calculateTicketPrice(ticketData, purchase)});
+
+  
+  finalReceipt.push(`-------------------------------------------\nTOTAL: $${convertCentsToDollars(totalPrice)}`)
+
+  return finalReceipt.join('');
+}
+
+function formatArrayOfWords(arr) {
+  if(arr.length === 0)return '';
+
+  return ` (` + arr.map(word => capitalize(word)).join(` Access, `) + ` Access)` 
+}
+
+function convertCentsToDollars(num) {
+  return (num / 100).toFixed(2);
+}
+
+function capitalize(string) {
+  return string.charAt(0).toUpperCase() + string.substring(1).toLowerCase();
+}
+
+console.log(purchaseTickets(exampleTicketData,purchases))
+
+
 
 // Do not change anything below this line.
 module.exports = {
