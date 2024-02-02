@@ -31,7 +31,6 @@ function getLongestDinosaur(dinosaurs) {
     let dinoName = currDino.name;
     let dinoHeight = Number(currDino.lengthInMeters * 3.281).toFixed(2);
 
-    
     dinoObj[dinoName] = dinoHeight;
 
     if(dinoHeight > maxDinoLength) {

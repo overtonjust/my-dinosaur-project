@@ -163,7 +163,7 @@ function checkForInvalidInfo(ticketData, ticketInfo) {
         extras: [],
       },
       {
-        ticketType: "gengdfgral",
+        ticketType: "general",
         entrantType: "senior",
         extras: ["terrace"],
       },
@@ -180,19 +180,19 @@ function checkForInvalidInfo(ticketData, ticketInfo) {
     ];
 
 function purchaseTickets(ticketData, purchases) {
-
+  // Check for any invalid purchases. If one's found store it and use it in the check to return the proper response.
   let invalidPurchase = purchases.find(purchase => (checkForInvalidInfo(ticketData,purchase) !== true));
   if(invalidPurchase) return checkForInvalidInfo(ticketData,invalidPurchase);
 
-  let finalReceipt = ['Thank you for visiting the Dinosaur Museum!\n-------------------------------------------\n']
-  
-  let totalPrice = 0;
-  purchases.forEach(purchase => {
-    finalReceipt.push(`${capitalize(purchase.entrantType)} ${ticketData[purchase.ticketType].description}: $${convertCentsToDollars(calculateTicketPrice(ticketData,purchase))}${formatArrayOfWords(purchase.extras)}\n`)
-    totalPrice += calculateTicketPrice(ticketData, purchase)});
+    // Once purchases are verified build your receipt with a slew of helper functions and template literals
+    let finalReceipt = ['Thank you for visiting the Dinosaur Museum!\n-------------------------------------------\n']
+    let totalPrice = 0;
+    
+    purchases.forEach(purchase => {
+      finalReceipt.push(`${capitalize(purchase.entrantType)} ${ticketData[purchase.ticketType].description}: $${convertCentsToDollars(calculateTicketPrice(ticketData,purchase))}${formatArrayOfWords(purchase.extras)}\n`)
+      totalPrice += calculateTicketPrice(ticketData, purchase)});
 
-  
-  finalReceipt.push(`-------------------------------------------\nTOTAL: $${convertCentsToDollars(totalPrice)}`)
+    finalReceipt.push(`-------------------------------------------\nTOTAL: $${convertCentsToDollars(totalPrice)}`)
 
   return finalReceipt.join('');
 }
@@ -211,7 +211,7 @@ function capitalize(string) {
   return string.charAt(0).toUpperCase() + string.substring(1).toLowerCase();
 }
 
-// console.log(purchaseTickets(exampleTicketData,purchases))
+console.log(purchaseTickets(exampleTicketData,purchases))
 
 
 

@@ -105,15 +105,15 @@ function findDinosaurId(dinosaurs,dinosaurName) {
     ]
  */
 function getConnectedRoomNamesById(rooms, id) {
-let arrOfIds = getConnectRoomIds(rooms,id);
-if(typeof arrOfIds == 'string') return arrOfIds;
+let arrOfIds = getConnectRoomIds(rooms,id); // give me the connectsTo array from the given ID
+if(typeof arrOfIds == 'string') return arrOfIds; // Check if the inputed Id was invalid
 
-let connectedRooms = matchRoomsWithID(rooms,arrOfIds);
-let uniqueId = arrOfIds.find(id => !connectedRooms.some(room => room.roomId === id));
+let connectedRooms = matchRoomsWithID(rooms,arrOfIds); //give me an array of all the objects from the connectsTo arr
+let uniqueId = arrOfIds.find(id => !connectedRooms.some(room => room.roomId === id)); // Stores the id if any connected rooms are invalid
 
 if(uniqueId) return `Room with ID of '${uniqueId}' could not be found.`
 
-return connectedRooms.map(room => room.name)
+return connectedRooms.map(room => room.name) // turn the array of connected room objects into an array of their names
 
 }
 

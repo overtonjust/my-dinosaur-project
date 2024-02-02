@@ -210,4 +210,5 @@ const dinosaurs = [
   },
 ];
 
-module.exports = dinosaurs;
+export default dinosaurs;
+// module.exports = dinosaurs;
