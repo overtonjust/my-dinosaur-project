@@ -1,0 +1,47 @@
+html {
+    min-width: 100%;
+    min-height: 100%;
+   }
+   
+div {
+    margin: 50px;
+    border: 50px;
+    padding: 100px;
+    text-align:center;
+}
+
+h1 {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-style: italic;
+    font-weight: bold;
+    font-size: 50px;
+    color: rgb(12, 173, 173);
+    margin-bottom: 50px;
+    background: url("../site/images/jurassic-border.jpg") ;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+h2 {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-style: italic;
+    font-size: 25px;
+    color: rgb(140, 87, 18);
+}
+body {
+    background-color: rgb(171, 235, 181);
+}
+
+ul {
+    display: flex;
+    list-style: none;
+    justify-content: space-between;
+    margin-bottom: 500px;
+    font-size: 30px;
+}
+
+li {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    border: 20px;
+    background-color: rgb(63, 135, 61,.4);
+}

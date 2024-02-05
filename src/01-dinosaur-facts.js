@@ -42,10 +42,11 @@ function getLongestDinosaur(dinosaurs) {
 
   },{});
 
-  longestDino[longestDinoName] = maxDinoLength;
   if(maxDinoLength === 0) {
     return {};
   }
+
+  longestDino[longestDinoName] = maxDinoLength;
 
   return longestDino;
 }

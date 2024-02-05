@@ -104,7 +104,7 @@ function findDinosaurId(dinosaurs,dinosaurName) {
       "Kit Hopkins Education Wing"
     ]
  */
-function getConnectedRoomNamesById(rooms, id) {
+  function getConnectedRoomNamesById(rooms, id) { // id = "A6QaYdyKra"
 let arrOfIds = getConnectRoomIds(rooms,id); // give me the connectsTo array from the given ID
 if(typeof arrOfIds == 'string') return arrOfIds; // Check if the inputed Id was invalid
 
@@ -117,7 +117,7 @@ return connectedRooms.map(room => room.name) // turn the array of connected room
 
 }
 
-function getConnectRoomIds(rooms,id) {
+function getConnectRoomIds(rooms,id) { // bob
   let foundRoom = rooms.find(room => room.roomId === id) || `Room with ID of '${id}' could not be found.`;
 
   return foundRoom.connectsTo || foundRoom
