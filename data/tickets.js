@@ -43,4 +43,4 @@ const tickets = {
   },
 };
 
-module.exports = tickets;
+export default tickets;

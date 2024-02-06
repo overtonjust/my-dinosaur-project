@@ -222,9 +222,9 @@ function matchRoomsWithID(rooms,arr){
 
 
 
-// module.exports = {
-//   getRoomByDinosaurName,
-//   getConnectedRoomNamesById,
-// };
+module.exports = {
+  getRoomByDinosaurName,
+  getConnectedRoomNamesById,
+};
 
 
