@@ -25,6 +25,10 @@ body {
     background-color: rgb(171, 235, 181);
 }
 
+ul {
+    list-style-type: none;
+    font-size: 30px;
+}
 img {
     display: table;
     list-style: none;
