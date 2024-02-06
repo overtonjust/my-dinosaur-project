@@ -1,3 +1,3 @@
 # my-dinosaur-project
 
-http://htmlpreview.github.io/?http://localhost:8080/site/index.html
+http://htmlpreview.github.io/?http://site/index.html
