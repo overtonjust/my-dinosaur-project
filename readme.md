@@ -1,3 +1,3 @@
 # my-dinosaur-project
 
-http://htmlpreview.github.io/?http://site/index.html
+https://raw.githack.com/overtonjust/my-dinosaur-project/main/site/index.html
