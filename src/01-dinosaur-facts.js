@@ -5,7 +5,8 @@
 
   Keep in mind that your functions must still have and use a parameter for accepting all dinosaurs.
 */
-const exampleDinosaurData = require("../data/dinosaurs");
+
+import dinosaurs from "../data/dinosaurs.js";;
 // Do not change the line above.
 
 /**

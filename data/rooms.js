@@ -172,4 +172,4 @@ const rooms = [
   },
 ];
 
-module.exports = rooms;
+export default rooms;

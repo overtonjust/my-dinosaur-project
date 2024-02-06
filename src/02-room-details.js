@@ -38,9 +38,39 @@ const input = [
 
   You may use this data to test your functions. You may assume the shape of the data remains the same but that the values may change.
 */
-const exampleDinosaurData = require("../data/dinosaurs");
-const exampleRoomData = require("../data/rooms");
+// const exampleDinosaurData = require("../data/dinosaurs");
+// const exampleRoomData = require("../data/rooms");
+
+import dinosaurs from "../data/dinosaurs.js";
+import rooms from "../data/rooms.js";
 // Do not change the lines above.
+
+
+/**
+ * findDinosaurID()
+ * ---------------------
+ * Return the Id of a given dinosaur in the dataset. If the dinosaur does not exist in the `dinosaurs` list or cannot be found in any room, return an error message that says so.
+ *
+ * @param {Object[]} dinosaurs - An array of dinosaur objects. See the `data/dinosaurs.js` file for an example of the input.
+ * @param {string} dinosaurName - The name of the dinosaur.
+ * @returns {string} The Id associated with the given dinosaur. Alternatively, an error message.
+ *
+ * EXAMPLE:
+ * findDinosaurId(dinosaurs, "Tyrannosaurus");
+ * //> "wuL4ddBinQ"
+ * 
+ * EXAMPLE:
+ * findDinosaurId(dinosaurs,"Pterodactyl");
+ * "Dinosaur with name 'Pterodactyl' cannot be found."
+ * 
+ */
+
+function findDinosaurId(dinosaurs,dinosaurName) {
+  let dinoObj = dinosaurs.find(dino => dino.name === dinosaurName) || `Dinosaur with name '${dinosaurName}' cannot be found.`;
+
+  return dinoObj.dinosaurId || dinoObj
+}
+
 
 /**
  * getRoomByDinosaurName()
@@ -69,12 +99,6 @@ function getRoomByDinosaurName(dinosaurs, rooms, dinosaurName) {
   let roomFound = rooms.find(room => room.dinosaurs.includes(idToCheck)) || `Dinosaur with name '${dinosaurName}' cannot be found in any rooms.`;
   
   return roomFound.name || roomFound;
-}
-
-function findDinosaurId(dinosaurs,dinosaurName) {
-  let dinoObj = dinosaurs.find(dino => dino.name === dinosaurName) || `Dinosaur with name '${dinosaurName}' cannot be found.`;
-
-  return dinoObj.dinosaurId || dinoObj
 }
 
 // console.log(findDinosaurId(exampleDinosaurData,"Allorus"))
@@ -117,11 +141,71 @@ return connectedRooms.map(room => room.name) // turn the array of connected room
 
 }
 
-function getConnectRoomIds(rooms,id) { // bob
+/**
+ * getConnectedRoomIds()
+ * ---------------------
+ * Returns an array of strings, where each string is the id of a room connected to the given room. If a room ID cannot be found, an error message is returned.
+ *
+ * @param {Object[]} rooms - An array of room objects. See the `data/rooms.js` file for an example of the input.
+ * @param {string} id - A unique room identifier.
+ * @returns {string|string[]} An array of room names, or an error message.
+ *
+ * EXAMPLE:
+ * getConnectRoomIds(rooms,"A6QaYdyKra");
+ * //>  [ 'zwfsfPU5u', 'aIA6tevTne', 'dpQnu5wgaN', 'L72moIRcrX' ]
+ *
+ * EXAMPLE:
+ *  getConnectedRoomNamesById(rooms, "incorred-id");
+ *  //>  `Room with ID of 'incorred-id' could not be found.`
+ */
+
+function getConnectRoomIds(rooms,id) { 
   let foundRoom = rooms.find(room => room.roomId === id) || `Room with ID of '${id}' could not be found.`;
 
   return foundRoom.connectsTo || foundRoom
 }
+
+// console.log(getConnectRoomIds(rooms,"A6QaYdyKra"))
+
+/**
+ * matchRoomsWithId()
+ * ---------------------
+ * Returns an array of objects, where each object is corresponded to the id in a given array.
+ *
+ * @param {Object[]} rooms - An array of room objects. See the `data/rooms.js` file for an example of the input.
+ * @param {array[]} arr - An array of Ids to match.
+ * @returns {Object[]} An array of room objects matching each id in the given array.
+ *
+ * EXAMPLE:
+ * getConnectRoomIds(rooms,[ "L72moIRcrX", "dBZeK6vhpt"]);
+ * 
+ * //>  [{
+    roomId: "L72moIRcrX", // 5
+    name: "Kit Hopkins Education Wing",
+    requiredTicketPermissions: ["education"],
+    dinosaurs: [
+      "YLtkN9R37", // Allosaurus
+      "U9vuZmgKwUr", // Xenoceratops
+    ],
+    connectsTo: [
+      "A6QaYdyKra", // Ticket Center
+      "0eNtkY5WoA", // Haley Hall
+      "Ys2Trg-1OT", // Terrell Leon Lecture Room
+    ],
+  }, {
+    roomId: "dBZeK6vhpt", // 10
+    name: "Paxton Decker Terrace",
+    requiredTicketPermissions: ["terrace"],
+    dinosaurs: [],
+    connectsTo: [
+      "0eNtkY5WoA", // Haley Hall
+      "Y707HL8uP9", // Roberts Room
+      "1FMoeqQxFk", // Blackwell Amphitheater
+    ],
+  }]
+ *
+ *
+ */
 
 function matchRoomsWithID(rooms,arr){
   let matchedRooms = rooms.filter(room => {
@@ -134,13 +218,13 @@ function matchRoomsWithID(rooms,arr){
    return matchedRooms;
 }
 
-console.log(getConnectedRoomNamesById(input,"xwG7O4wQl"))
+// console.log(getConnectedRoomNamesById(input,"xwG7O4wQl"))
 
 
 
-module.exports = {
-  getRoomByDinosaurName,
-  getConnectedRoomNamesById,
-};
+// module.exports = {
+//   getRoomByDinosaurName,
+//   getConnectedRoomNamesById,
+// };
 
 
